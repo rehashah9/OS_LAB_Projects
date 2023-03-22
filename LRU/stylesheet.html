@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="simulatestyle.css">
+</head>
+<body>
+  <header>
+  <form action="lru_db.php" method="POST">
+    <h1 class="text-center">Simulator</h1>
+    <div class="form">
+<!-- Creating labels and input feilds -->
+      <Label class="label-input">Input fields</Label>
+      <Label class="label-input">Refrence String: </Label>
+      <input class="form-input" type="text" name="rs" id="rs" placeholder="Enter Refrence String"></br>
+      <Label class="label-input">Total slots in memory: </Label>
+      <input class="form-input" type="text" name="tsim" id="tsim" placeholder="Enter slots in memory"></br>
+<!-- On click event to the button -->
+	  <button class="btn btn-dark" id="sim" onclick="simulate()">Simulate</button>
+
+      <Label class="label-input"><h2>Result</h2> </Label>
+<!-- Creating table -->
+      <table id="table_mem" border="2">
+		<thead></thead>
+		<tbody>
+<!-- Table row -->
+		 <tr>
+<!-- Table data -->
+		   <td></td> 
+		 </tr>
+		</tbody>
+	</table><br><br>
+      <label class="label-input">No of Hits</label><br/>
+      <input class="form-input" type="text" readonly="readonly" name="noh" id="noh" placeholder="No of hit rate"></br>
+	  <label class="label-input">No of Page fault</label><br/>
+      <input class="form-input" type="text" readonly="readonly" name="lor" id="lor" placeholder="No of page fault"></br>
+      <label class="label-input">Hit Rate</label><br/>
+      <input class="form-input" type="text" readonly="readonly" name="hr" id="hr" placeholder="Hit Rate"></br>
+      <label class="label-input">Miss Rate</label><br/>
+      <input class="form-input" type="text" readonly="readonly" name="mr" id="mr" placeholder="Miss rate"></br>
+    </form>
+<!-- Connecting java script code to the html -->
+	<script src="js_backend.js"> </script>	
+</header>
+</body>
+</html>

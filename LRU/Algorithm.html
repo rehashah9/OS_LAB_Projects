@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+<!-- Giving CSS -->
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,500;1,400&display=swap'); 
+            header {
+                background-image:url("lru1.jpg");
+        }
+        .head{
+            background-color: rgb(32, 94, 56);
+        }
+/* CSS to nav bar */
+            nav {
+			overflow: hidden;
+		}
+		
+		nav a {
+			float: left;
+			color: rgb(2, 1, 3);
+			text-align: center;
+			padding: 14px 16px;
+			font-family: 'Ubuntu', sans-serif;
+			font-size: 25px;
+		}
+		
+		nav a:hover {
+			color: rgb(245, 243, 243);
+		}
+/* CSS to paragraph */
+		p {
+			font-size: 20px;
+			padding: 20px;
+		}
+/* Giving css to the text */
+        .text-big{
+            font-size: 40px;
+        }
+        .text-small{
+            padding: 5px;
+            font-size:18px;
+        }
+        .text-heading{
+            font-size:30px;
+        }
+        .Section{
+           font-family: 'Ubuntu', sans-serif;
+        }
+
+        </style>
+    </head>
+    <header>
+    <body>
+<!-- Nav bar -->
+        <nav class="head">
+            <a href="#Algorithm">Algorithm</a>
+            <a href="#advantages_and_disadvantages">Advantages And Disadvantages</a>
+        </nav>
+        <section class="Section">
+<!-- Writing information of lru -->
+        <div id="Algorithm">
+            <section class="section">
+                 <p class="sectionTag text-big">Algorithm</p>
+                 <ul>
+                  <li><p class="sectionsubTag text-small">LRU (Least Recently Used) is a caching algorithm that is commonly used in computer operating systems, database systems, and web servers to manage the contents of a cache.The basic idea behind LRU is to keep track of which items have been accessed recently and which ones have not. When the cache becomes full and a new item needs to be added, the least recently used item is evicted to make room for the new item.
+                </p></li>
+                <li><p class="sectionsubTag text-small">The LRU algorithm works as follows:
+                </p></li>
+                <li><p class="sectionsubTag text-small">When an item is accessed, it is moved to the front of the cache (or to the top of a linked list).
+                    When the cache is full and a new item needs to be added, the item at the back of the cache (or at the bottom of the linked list) is evicted.
+                    When an item is accessed again, it is moved to the front of the cache (or to the top of the linked list) again.
+                    The LRU algorithm can be implemented using a variety of data structures such as an array, a linked list, or a hash table. The most commonly used data structure for implementing LRU is a doubly linked list with a hash table.
+                </p></li>
+                <li><p class="sectionsubTag text-small">LRU can be a very effective caching algorithm, especially when the access pattern of the items in the cache has a temporal locality. However, it does have its limitations, such as in cases where items are accessed in a cyclical or periodic pattern. In such cases, a different caching algorithm may be more appropriate.</p></li>
+                </p></li>
+                </ul>
+            </section>
+            <div id="advantages_and_disadvantages">
+            <section class="section section-right">
+                  <p class="sectionTag text-big">Advantages And Disadvantages</p>
+                  <ul>
+                  <p class="sectionsubTag text-heading">Advantages of LRU:</p>
+                  <li><p class="sectionsubTag text-small">Efficient use of cache memory: LRU is a popular caching algorithm because it ensures that the cache is used efficiently. By evicting the least recently used items, it frees up space for new items that are more likely to be accessed in the future.
+                </p></li>
+                <li><p class="sectionsubTag text-small">Predictable performance: Because LRU is a deterministic algorithm, it provides predictable performance. This makes it easier to optimize the cache for specific workloads and ensure that the most important data is always available in the cache.
+                </p></li>
+                <li><p class="sectionsubTag text-small">Simple implementation: LRU is a relatively simple algorithm to implement, which makes it a popular choice for many applications.
+                </p></li>
+                <p class="sectionsubTag text-heading">Disadvantages of LRU:</p>
+                <li><p class="sectionsubTag text-small">High overhead: LRU can be computationally expensive, especially in systems with large caches. This is because the algorithm requires tracking the usage of every item in the cache and updating that information every time an item is accessed.
+                </p></li>
+                <li><p class="sectionsubTag text-small">Poor performance with skewed access patterns: LRU is designed to work well with workloads that exhibit temporal locality (i.e., items that are accessed frequently tend to be accessed again soon). However, it can perform poorly when there are frequent accesses to a small subset of items, known as a "skewed access pattern."
+                </p></li>
+                <li><p class="sectionsubTag text-small">Inefficient handling of write-back caches: In a write-back cache, modified data is only written back to the main memory when it is evicted from the cache. LRU can be inefficient in this scenario because it may evict data that has been modified, resulting in additional writes to the main memory.
+                  </p></li>
+                   </ul>
+             </section>
+        </div>
+    </section>
+    </body>
+    </header>
+</html>

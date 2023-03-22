@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="CSS/style.css">
+  <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+  <title>SSTF</title>
+</head>
+  <!--nav element defines a navigation bar, which contains a list of links to different sections of the page-->
+<body>
+  <nav class="navbar background">
+    <ul class="nav-list">
+      <div class="logo"><img src="img/img.jpg" alt="logo"></div>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#simulator">Simulator</a></li>
+      <li><a href="#contactus">Contact_us</a></li>
+     </ul>
+    <!--search input field and a search button.-->
+     <div class="rightNav">
+        <input type="text" name="search" id="search">
+        <button class="btn btn-sm">Search</button>
+     </div>
+   </nav>
+  <!-- content of the "home" section of the page-->
+   <div id="home">
+   <section class="background firstSection">
+      <div class="box-main">
+         <div class="firstHalf">
+            <p class="text-big">SSTF</p>
+            <p class="text-small">The full form of SSTF is Shortest Seek Time First. SSTF is a secondary storage scheduling algorithm that determines the motion of the disk's head and arm in servicing the read and write requests.</p>
+         </div>
+         <div class="secondHalf">
+            <img src="img/img3.jpg" alt="OS">
+         </div>
+      </div>
+   </section>
+   </div>
+  
+   <div id="about">
+   <section class="section">
+      <div class="paras">
+        <p class="sectionTag text-big">About Algorithm</p>
+        <ul>
+         <li><p class="sectionsubTag text-small">Shortest Seek Time First and is a disk scheduling algorithm used in operating systems. The SSTF algorithm selects the disk I/O request with the smallest seek time from the current position of the disk head. The seek time is the time it takes for the disk head to move from its current position to the position of the requested block.</p></li>
+         <li><p class="sectionsubTag text-small">The SSTF algorithm tries to minimize the amount of time it takes to service disk requests by choosing the request that is closest to the current position of the disk head. By doing this, the algorithm can reduce the overall disk seek time and improve the overall performance of the system.</p></li>
+         <li><p class="sectionsubTag text-small"> However, the SSTF algorithm may result in starvation of requests that are located far away from the current position of the disk head. This is because requests that are closer to the disk head are always serviced first, which may cause other requests to wait for a long time.
+         Overall, the SSTF algorithm is an efficient disk scheduling algorithm that can improve the performance of disk I/O operations in a system, but it may not be the most optimal algorithm in all cases.
+         </p></li>
+      </ul>
+        </div>
+       <div class="thumbnail">
+         <img src="img/dia.png" alt="Diagram" class="imgFluid">
+       </div>
+   </section>
+  <!--web page layout for a simulation of the SCAN disk scheduling algorithm. The layout consists of three sections: advantages, disadvantages, and a simulator.4-->
+   <section class="section section-left">
+      <div class="paras">
+        <p class="sectionTag text-big">Advantages</p>
+        <ul>
+         <li> <p class="sectionsubTag text-small">
+          It reduces the total seek time as compared to FCFS.
+         </p></li>
+         <li><p  class="sectionsubTag text-small"> It provides increased throughput</p></li>
+         <li><p  class="sectionsubTag text-small">It provides less average response time and waiting time.</p></li> 
+      </ul> 
+      </div>
+       <div class="thumbnail">
+         <img src="img/adv.jpeg" alt="Diagram" class="imgFluid">
+       </div>
+   </section>
+  <!--background image or color applied on home page-->
+   <section class="section section-right">
+      <div class="paras">
+        <p class="sectionTag text-big">Disadvantages</p>
+        <p class="sectionsubTag text-small">
+         <ul>
+        <li><p class="sectionsubTag text-small"> There is an overhead of finding out the closest request.</p></li>
+        <li><p  class="sectionsubTag text-small"> And the requests which are far from the head might starve for the CPU.</p></li>
+        <li><p  class="sectionsubTag text-small"> It provides a high variance in response time and waiting time.</p></li>
+        <li><p  class="sectionsubTag text-small"> Switching the direction of the head frequently slows down the algorithm.
+         </p></li>
+      </ul>
+        </div>
+       <div class="thumbnail">
+         <img src="img/disadv.jpeg" alt="Diagram" class="imgFluid">
+       </div>
+   </section>
+  </div>
+  <!-- entering records and displaying results-->
+  <div id="simulator">
+  <section class="simulator_r">
+   <h1 class="text-center">Enter Record</h1>
+    <div class="form">
+      <Label class="label-input">Enter initial position of head: </Label>
+      <input class="form-input" type="text" name="ip" id="ip" placeholder="Enter Initial Position of Head"></br><br>
+      <Label class="label-input"><h2>Add Request</h2></Label>
+      <Label class="label-input">Enter track no requested by I/O operation: </Label>
+      <input class="form-input" type="text" name="ior" id="ior" placeholder="Enter track no requested by I/O operation"></br>
+      <button class="btn btn-dark" id="add">Add</button><br>
+      <Label class="label-input">Generated id for Track Request </Label>
+      <input class="form-input" type="text" name="tr" id="tr" placeholder="ID"></br><br>
+      <Label class="label-input"><h2>Delete Request</h2> </Label>
+      <Label class="label-input">Enter id of request to be deleted </Label>
+      <input class="form-input" type="text" name="idr" id="idr" placeholder="Enter id of request to be deleted"></br>
+      <button class="btn btn-dark" id="del">Delete</button><br><br>
+      <button class="btn btn-dark" id="sim">Simulate</button>
+      <button class="btn btn-dark" id="cls">Clear</button>
+  
+    </div>
+    </section>
+  
+    <section class="simulator_rr">
+      <h1 class="text-center">Resulted Record</h1>
+       <div class="form">
+         <label class="label-input">List of I/O Request(Format: Id-Request Track position)</label><br/>
+         <input class="form-input" type="text" name="lor" id="lor" placeholder="List of I/O Request"></br>
+         <label class="label-input">Order of completion</label><br/>
+         <input class="form-input" type="text" name="oc" id="oc" placeholder="Order of Completion"></br>
+         <label class="label-input">Total movement done by r/w head to finish all I/O request</label>
+         <input class="form-input" type="text" name="mior" id="mior" placeholder="Total movement done by I/O Request"></br>
+         <label class="label-input">Movement of r/w Head</label><br/> 
+         <div id="plot" style="width:100%;max-width:700px"></div>
+      </div>
+       </section>
+      </div>
+  
+      <div id="contactus">
+         <section class="contact">
+            <h1 class="text-center">Contact Us</h1>
+             <div class="form">
+               <input class="form-input" type="text" name="name" id="name" placeholder="Enter your name">
+               <input class="form-input" type="email" name="email" id="email" placeholder="Enter your email">
+               <input class="form-input" type="text"  name="phone" id="phone" placeholder="Enter your Phone no">
+               <textarea class="form-input" name="text" id="text" cols="30" rows="10" placeholder="Enter your Problem">Enter your Problem</textarea>
+               <button class="btn btn-dark" id="sub">Submit</button>
+             </div>
+         </section>
+        </div>
+  
+   <footer>
+      <p class="text-footer">
+         Copyright &copy; 2023 - All rights reserved
+      </p>
+   </footer>
+  
+  <py-env>
+    - matplotlib
+  </py-env>
+<!--functions that implement the Shortest Seek Time First (SSTF) algorithm for disk scheduling, and the functions to add, delete, and simulate requests.-->
+  <py-script>
+#importing required modules
+from js import document
+from pyodide import create_proxy
+import sqlite3
+import matplotlib.pyplot as plt
+import os
+
+#function to do the sstf scheduling - T(n)=O(n^2)
+def disk_sstf(head_pos,req_queue):
+  res_queue=[] #returned queue
+  tot_mov=0 #total movement done by head
+  #iterating through request queue to add all the request into result in specific order
+  while(req_queue!=[]):
+    m=abs(head_pos-req_queue[0][1]) #to store minimum distance
+    ind=0 #to store index of next request
+    #iterating through request queue to find minimum
+    for i in range(len(req_queue)):
+      #if minimum or equal to minimum and with higher p_id
+      if abs(head_pos-req_queue[i][1]) < m:
+        m=abs(head_pos-req_queue[i][1])
+        ind=i
+      elif (abs(head_pos-req_queue[i][1])==m) and (req_queue[i][0] < req_queue[ind][0]):
+        m=abs(head_pos-req_queue[i][1])
+        ind=i
+    res_queue.append(req_queue[ind])
+    tot_mov+=m
+    head_pos=req_queue[ind][1]
+    del req_queue[ind]
+  return (res_queue,tot_mov)
+
+#adding request into database and generating id
+def add_req(e):
+  global co
+  global mo
+  req_txtf=Element('ior').element
+  req_no=req_txtf.value
+  #adding request to database if it is int and non-neg
+  if req_no.isdigit() and req_no!="":
+    if int(req_no)>=0:
+      #generating next unique p_id
+      co.execute('select max(id) from requests')
+      m_id=co.fetchone();
+      if m_id[0]==None:
+        r_id=1
+      else:
+        r_id=m_id[0]+1
+      ins="insert into requests values(?,?)"
+      r_ins=(r_id,int(req_no))
+      co.execute(ins,r_ins)
+      mo.commit()
+      Element('tr').element.value=str(r_id)
+      req_txtf.value=req_txtf.value+" added"
+      req_list_dis()
+    else:
+      req_txtf.value="value cannot be negative"
+  else:
+    req_txtf.value="invalid value!"
+
+#deleting request from database by p_id i p_id exists in database
+def del_req(e):
+  global co
+  global mo
+  rid_txtf=Element('idr').element
+  d_id=rid_txtf.value
+  if d_id.isdigit() and d_id!="":
+    if int(d_id)>0:
+      co.execute('select * from requests where id = ?',(int(d_id),))
+      res_d=co.fetchone();
+      if res_d==None:
+        rid_txtf.value="given id doesn't exist"
+      else:
+        co.execute('delete from requests where id = ?',(int(d_id),))
+        mo.commit()
+        rid_txtf.value=rid_txtf.value+" deleted"
+        req_list_dis()
+    else:
+      rid_txtf.value="id has to be a positive integer"
+  else:
+    rid_txtf.value="invalid value!"
+
+#checking if initial position of head given is appropriate and then running sheduling algo and generating graph
+def sim_req(e):
+  global co
+  global fig
+  hip_txtf=Element('ip').element
+  h_ip=hip_txtf.value
+  if h_ip.isdigit() and h_ip!="":
+    if int(h_ip)>=0:
+      co.execute('select * from requests')
+      req_data=co.fetchall()
+      if req_data[0]==None:
+        Element('tr').element.vaule="Can't simulate with no data!"
+      else:
+        sch_queue,total_mov=disk_sstf(int(h_ip),req_data)
+        Element('mior').element.value=str(total_mov)
+        st_list=""
+        x=[int(h_ip)]
+        y=[0]
+        itt=1
+        for i in sch_queue:
+          st_list+=str(i[0])+"-"+str(i[1])+","
+          x.append(i[1])
+          y.append(itt)
+          itt+=1
+        Element('oc').element.value=st_list
+        req_list_dis()
+        #display graph
+        fig, ax = plt.subplots()
+        plt.plot(x,y)
+        plt.xlabel('track position')
+        plt.ylabel('iteration')
+    else:
+      hip_txtf.value="value has to be non-negative"
+  else:
+    hip_txtf.value="invalid value!"
+  pyscript.write('plot',fig)
+
+#clearing database and all the textfields
+def cls_req(e):
+  global co
+  global mo
+  co.execute('delete from requests')
+  mo.commit()
+  Element('ip').element.value="Database has been cleared"
+  Element('ior').element.vaule=""
+  Element('tr').element.value=""
+  Element('idr').element.value=""
+  Element('lor').element.value=""
+  Element('oc').element.vaule=""
+  Element('mior').element.value=""
+        
+#retrieves all the requests from the database and displays them in a text box
+def req_list_dis():
+  global co
+  global mo
+  co.execute('select * from requests')
+  req_data=co.fetchall()
+  print(req_data)
+  str_dis=""
+  for i in req_data:
+    str_dis+=str(i[0])+"-"+str(i[1])+","
+  Element('lor').element.value=str_dis
+
+#checks correctness and then adds user details given in contact_us to database
+def sub_req(e):
+  global co
+  global mo
+  name=Element('name').element.value
+  email=Element('email').element.value
+  phone=Element('phone').element.value
+  text=Element('text').element.value
+  if name!="":
+    if email!="":
+      if phone!="":
+        if text!="":
+          coninp=(name,email,phone,text)
+          co.execute('insert into contact_us values(?,?,?,?)',coninp)
+          mo.commit()
+          Element('text').element.value="saved!"
+          Element('phone').element.value=""
+          Element('email').element.value=""
+          Element('name').element.value=""
+        else:
+          Element('text').element.value="enter text!"
+      else:
+        Element('phone').element.value="enter text!"
+    else:
+      Element('email').element.value="enter text!"
+  else:
+    Element('name').element.value="enter text!"
+  co.execute('select * from contact_us')
+  con_data=co.fetchall()
+  print(con_data)
+
+#connecting to database and creating both the tables
+mo=sqlite3.connect('os_lab_proj3.db') #connection object
+co=mo.cursor() #cursor object
+co.execute('create table requests(id int primary key, track_no int)')
+mo.commit()
+co.execute('create table contact_us(name text,email text,phone text,problem text)')
+mo.commit()
+
+#proxy for add function and connecting it to add button
+add_func=create_proxy(add_req)
+add_but=document.getElementById("add")
+add_but.addEventListener("click",add_func)
+
+#proxy for delete function and connecting it to delete button
+del_func=create_proxy(del_req)
+del_but=document.getElementById("del")
+del_but.addEventListener("click",del_func)
+
+#proxy for simulate function and connecting it to simulate button
+sim_func=create_proxy(sim_req)
+sim_but=document.getElementById("sim")
+sim_but.addEventListener("click",sim_func)
+
+#proxy for clear function and connecting it to clear button
+cls_func=create_proxy(cls_req)
+cls_but=document.getElementById("cls")
+cls_but.addEventListener("click",cls_func)
+
+#proxy for submit function and connecting it to submit button
+sub_func=create_proxy(sub_req)
+sub_but=document.getElementById("sub")
+sub_but.addEventListener("click",sub_func)
+
+#creating a placeholder graph for creating proper graph in simulate
+x=[0,0,0,0]
+y=[0,0,0,0]
+fig, ax = plt.subplots()
+plt.plot(x,y)
+plt.xlabel('track position')
+plt.ylabel('iteration')
+pyscript.write('plot',fig)
+  </py-script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,500;1,400&display=swap'); 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Ubuntu', sans-serif;
+  }
+/*Style of body-background image*/
+   header {
+    width: 100%;
+    height: 100vh;
+    background-image:url("lru.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  /*style of main heading-alignment and font color*/
+  main {
+    width: 100%;
+    height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: rgb(6, 6, 6);
+  }
+  /*Sub heading style*/
+  section h3 {
+    font-size: 35px;
+    font-weight: 200;
+    letter-spacing: 3px;
+    text-shadow: 1px 1px 2px black;
+  }
+  
+  section h1 {
+    margin: 30px 0 20px 0;
+    font-size: 55px;
+    font-weight: 700;
+    text-shadow: 2px 1px 5px black;
+    text-transform: uppercase;
+  }
+  
+  section p {
+    font-size: 25px;
+    word-spacing: 2px;
+    margin-bottom: 25px;
+    text-shadow: 1px 1px 1px black;
+  }
+  /*Styling of buttons-font size,color etc.*/
+  section a {
+    padding: 12px 30px;
+    border-radius: 4px;
+    outline: none;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: all 0.5s ease;
+  }
+  
+  /*Stlying of button Simulator*/
+  section .btnone {
+    background: #fff;
+    color: #000;
+  }
+  
+  .btnone:hover {
+    background: rgb(26,146,26);
+    color: white;
+  }
+  /*Styling of button About Algorithm*/
+  section .btntwo {
+    background: rgb(26,146,26);
+    color: white;
+  }
+  
+  .btntwo:hover {
+    background: #fff;
+    color: #000;
+  }
+
+  
