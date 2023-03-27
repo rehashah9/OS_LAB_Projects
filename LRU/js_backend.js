@@ -128,7 +128,7 @@ function simulate()
   var ref_st = document.getElementById('rs').value;
   size = parseInt(document.getElementById('tsim').value);
   //checking if size input is not int
-  if(size!==size
+  if(size!==size)
     document.getElementById('tsim').value="value has to be integer!";
   else
   {
@@ -136,8 +136,8 @@ function simulate()
     //displaying statistical data output onto html page
     document.getElementById('noh').value=hits;
     document.getElementById('lor').value=faults;
-    document.getElementById('hr').value=hits/size;
-    document.getElementById('mr').value=faults/size;
+    document.getElementById('hr').value=hits/m;
+    document.getElementById('mr').value=faults/m;
   }
 }
 //function to render table displaying memory status after each page request

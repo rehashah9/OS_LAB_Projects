@@ -1,8 +1,8 @@
 <?php
   $servername = "localhost";
 	$username = "root";
-	$password = "";
-	$dbname = "lru";
+	$password = "reha";
+	$dbname = "os_lab";
 	$conn = mysqli_connect($servername, $username, $password, $dbname);
 	if (!$conn) {
 		die("Connection failed: " . mysqli_connect_error());
