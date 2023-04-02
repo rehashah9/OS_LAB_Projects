@@ -24,20 +24,21 @@ import javax.swing.table.DefaultTableModel;
 class FrontEndPage1 implements ActionListener{
   private static JTable table;
   DefaultTableModel model;
-  JFrame frame = new JFrame("CPU Scheduling using SRT");
+  JFrame frame = new JFrame("CPU Scheduling using SRTN");
   JPanel titlepanel = new JPanel();
   JButton addButton = new JButton("Add");
   JButton delButton = new JButton("Delete");
   JButton gant_chart = new JButton("See Gant Chart and other statistics");
   JButton reloadButton = new JButton("Reset and Clear");
-  JLabel titleLabel = new JLabel("CPU Scheduling using SRT Simulator");
+  JLabel titleLabel = new JLabel("CPU Scheduling using SRTN Simulator");
   JLabel addLabel = new JLabel("To add process to scheduling:");
   JLabel delLabel = new JLabel("To remove process from scheduling:");
   JLabel process_nameLabel = new JLabel("Process Name (max. 25 characters): ");
-  JLabel a_tLabel = new JLabel("Arival Time: ");
-  JLabel b_tLabel = new JLabel("CPU Burst Time: ");
+  JLabel a_tLabel = new JLabel("Arival Time (in cycles): ");
+  JLabel b_tLabel = new JLabel("CPU Burst Time (in cycles): ");
   JLabel id_tLabel = new JLabel("Process ID: ");
   JTextField process_nameField = new JTextField();
+  JLabel noteLabel = new JLabel("NOTE: Unit of all time measurements is a CPU cycle - time taken by the CPU to finish 1 cycle of execution.");
   JTextField a_tField = new JTextField();
   JTextField b_tField = new JTextField();
   JTextField id_tField = new JTextField();
@@ -93,14 +94,15 @@ class FrontEndPage1 implements ActionListener{
     frame.add(delButton);
     frame.add(reloadButton);
     frame.add(gant_chart);
+    frame.add(noteLabel);
     titlepanel.setBounds(25,25,850,100);
     scrollPane.setBounds(25,150,850,400);
     gant_chart.setBounds(525,575,250,50);
     reloadButton.setBounds(25,575,200,50);
     addLabel.setBounds(925,25,300,50);
-    process_nameLabel.setBounds(925,90,150,30);
-    a_tLabel.setBounds(925,130,100,30);
-    b_tLabel.setBounds(925,170,100,30);
+    process_nameLabel.setBounds(925,90,180,30);
+    a_tLabel.setBounds(925,130,180,30);
+    b_tLabel.setBounds(925,170,180,30);
     process_nameField.setBounds(1125,90,200,30);
     a_tField.setBounds(1125,130,200,30);
     b_tField.setBounds(1125,170,200,30);
@@ -109,6 +111,7 @@ class FrontEndPage1 implements ActionListener{
     id_tLabel.setBounds(925,355,100,30);
     id_tField.setBounds(1125,355,200,30);
     delButton.setBounds(1125,400,75,50);
+    noteLabel.setBounds(25,650,700,30);
     frame.pack();
     //inserting updated data into database before program closes - lazy shifting
     frame.addWindowListener(new WindowAdapter(){

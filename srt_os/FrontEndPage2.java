@@ -29,6 +29,7 @@ public class FrontEndPage2
   JLabel avgtat;
   JLabel avgwt;
   JLabel avgrt;
+  JLabel noteLabel = new JLabel("NOTE: Unit of all time measurements is a CPU cycle - time taken by the CPU to finish 1 cycle of execution.");
   FrontEndPage2(ArrayList<Pr_Gant> arg,double avg_ct,double avg_tat,double avg_wt,double avg_rt) 
   {
       //initial GUI commands
@@ -36,10 +37,10 @@ public class FrontEndPage2
     frame.setLayout(null);
     frame.setSize(1200,800);
     //average time display labels
-    avgct = new JLabel("Average Completion Time: "+avg_ct);
-    avgtat = new JLabel("Average Turnaround Time: "+avg_tat);
-    avgwt = new JLabel("Average Waiting Time: "+avg_wt);
-    avgrt = new JLabel("Average Response Time: "+avg_rt);
+    avgct = new JLabel("Average Completion Time (in cycles): "+avg_ct);
+    avgtat = new JLabel("Average Turnaround Time (in cycles): "+avg_tat);
+    avgwt = new JLabel("Average Waiting Time (in cycles): "+avg_wt);
+    avgrt = new JLabel("Average Response Time (in cycles): "+avg_rt);
     //gant chart table creation
     String[] columnNames = { "Process_id", "Executed_Time", "From(Starting time)", "Till(End)", "Remaining_Time" };
     Object[][] data = {};
@@ -56,19 +57,40 @@ public class FrontEndPage2
     //adding data into table and gant chart from arraylist
     Pr_Gant g;
     Iterator i = arg.iterator();
-    int cur_t=0;
+    int cur_t=0,col_no=1;
+    gant_model.addColumn("process id: ");
     while(i.hasNext())
     {
       g=(Pr_Gant)i.next();
       if(g.from>cur_t)
       {
         gant_model.addColumn("idle");
+        col_no++;
         model.addRow(new Object[] {"CPU idle",g.from-cur_t,cur_t,g.from,"-"});
       }
       gant_model.addColumn(g.process_id+"");
+      col_no++;
       model.addRow(new Object[] {g.process_id, g.executed_time, g.from, g.till,g.remaining_time});
       cur_t=g.till;
     }
+    Object[] gant_row = new Object[col_no];
+    gant_row[0]="cycles: ";
+    col_no=1;
+    cur_t=0;
+    i = arg.iterator();
+    while(i.hasNext())
+    {
+      g=(Pr_Gant)i.next();
+      if(g.from>cur_t)
+      {
+        gant_row[col_no]=Integer.toString(cur_t)+"-"+Integer.toString(g.from);
+        col_no++;
+      }
+      gant_row[col_no]=Integer.toString(g.from)+"-"+Integer.toString(g.till);
+      col_no++;
+      cur_t=g.till;
+    }
+    gant_model.addRow(gant_row);
     //other components defined, bounded and added
     title.setLayout(new GridLayout(1, 1));
     title.setBackground(new Color(140,140,140));
@@ -80,7 +102,8 @@ public class FrontEndPage2
     frame.add(avgtat);
     frame.add(avgwt);
     frame.add(gant_scroll);
-     frame.add(avgrt);
+    frame.add(avgrt);
+    frame.add(noteLabel);
     title.setBounds(25,25,1150,100);
     avgct.setBounds(850,150,250,30);
     avgtat.setBounds(850,195,250,30);
@@ -88,6 +111,7 @@ public class FrontEndPage2
     avgrt.setBounds(850,285,250,30);
     scrollPane.setBounds(25,150,800,300);
     gant_scroll.setBounds(25,475,1150,100);
+    noteLabel.setBounds(25,650,700,30);
     frame.pack();
      frame.getContentPane().setBackground(new Color(200,255,255));
      

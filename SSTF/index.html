@@ -186,26 +186,40 @@ def add_req(e):
   global co
   global mo
   req_txtf=Element('ior').element
-  req_no=req_txtf.value
+  req_no_all=req_txtf.value
   #adding request to database if it is int and non-neg
-  if req_no.isdigit() and req_no!="":
-    if int(req_no)>=0:
-      #generating next unique p_id
-      co.execute('select max(id) from requests')
-      m_id=co.fetchone();
-      if m_id[0]==None:
-        r_id=1
+  flag=0
+  for i in req_no_all:
+    if not(i.isdigit() or i.isspace()):
+      flag=1
+      break 
+  if flag==0 and req_no_all!="":
+    Element('tr').element.value=""
+    while(req_no_all!=""):
+      space_index=req_no_all.find(" ")
+      if(space_index>0):
+        req_no=req_no_all[0:space_index+1]
+        req_no_all=req_no_all[space_index+1:]
       else:
-        r_id=m_id[0]+1
-      ins="insert into requests values(?,?)"
-      r_ins=(r_id,int(req_no))
-      co.execute(ins,r_ins)
-      mo.commit()
-      Element('tr').element.value=str(r_id)
-      req_txtf.value=req_txtf.value+" added"
-      req_list_dis()
-    else:
-      req_txtf.value="value cannot be negative"
+        req_no=req_no_all
+        req_no_all=""
+      if int(req_no)>=0:
+        #generating next unique p_id
+        co.execute('select max(id) from requests')
+        m_id=co.fetchone();
+        if m_id[0]==None:
+          r_id=1
+        else:
+          r_id=m_id[0]+1
+        ins="insert into requests values(?,?)"
+        r_ins=(r_id,int(req_no))
+        co.execute(ins,r_ins)
+        mo.commit()
+        Element('tr').element.value+=(str(r_id)+" ")
+        req_txtf.value=req_txtf.value+" added"
+        req_list_dis()
+      else:
+        req_txtf.value="value cannot be negative"
   else:
     req_txtf.value="invalid value!"
 
