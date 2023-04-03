@@ -151,11 +151,13 @@ function table_render()
   var ref_row = html_table.insertRow(-1);
   var label_cell = ref_row.insertCell(-1);
   label_cell.setHTML("Reference String: ");
+  label_cell.style.fontWeight = 'bold';
   //adding cells in the row to show each referenced page seperately
   for(i=0;i<m;i++)
   {
     var j_cell = ref_row.insertCell(-1);
     j_cell.setHTML(page_order[i]);
+    j_cell.style.fontWeight = 'bold';
   }
   //displaying actual values from variable table
   for(i=0;i<size;i++)
@@ -165,21 +167,36 @@ function table_render()
     var mem_label_cell = new_row.insertCell(-1);
     var st = "slot "+String(i)+": ";
     mem_label_cell.setHTML(st);
+    mem_label_cell.style.fontWeight = 'bold';
     //for each slot adding cells to show page in the slot in each status of memory until all referenced pages are done
     for(j=0;j<m;j++)
     {
       var jth_cell = new_row.insertCell(-1);
       jth_cell.setHTML(table[j][i]);
+      if(table[j][i]==page_order[j])
+      {
+        jth_cell.style.color = '#800000';
+        jth_cell.style.fontWeight = 'bold';
+      }
     }
   }
   //row to display hit or miss status
   var hm_row = html_table.insertRow(-1);
   var labelhm_cell = hm_row.insertCell(-1);
   labelhm_cell.setHTML("Hit/Miss: ");
+  labelhm_cell.style.fontWeight = 'bold';
   //adding cells in the row to show hit or miss status of each referenced page seperately
   for(i=0;i<m;i++)
   {
     var jhm_cell = hm_row.insertCell(-1);
     jhm_cell.setHTML(hit_miss[i]);
+    if(hit_miss[i].localeCompare("hit") == 0)
+    {
+      jhm_cell.style.color = 'green';
+    }
+    else
+    {
+      jhm_cell.style.color = 'red';
+    }
   }
 }
