@@ -118,20 +118,21 @@ function simulate()
 {
   //getting refrence string and memory size value from user input and striping trailing and beginning spaces
   var ref_st = (document.getElementById('rs').value).trim();
-  size = parseInt((document.getElementById('tsim').value).trim());
+  size_str = (document.getElementById('tsim').value).trim();
   //checking if size input is not int
-  if(size!==size)
+  if(isNaN(size_str)==true)
   {
     document.getElementById('tsim').placeholder="value has to be integer!";
     document.getElementById('tsim').value="";
   }
-  //if size is not integer
+  //if size is integer
   else
   {
+    size=parseInt(size_str);
     if (size <= 0)
     {
       //error: memory capacity has to be positive
-      document.getElementById('tsim').placeholder='value has to be positive!';
+      document.getElementById('tsim').placeholder='value has to be a positive integer!';
       document.getElementById('tsim').value='';
     }
     //if size is positive
