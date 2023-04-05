@@ -29,6 +29,7 @@ public class FrontEndPage2
   JLabel avgtat;
   JLabel avgwt;
   JLabel avgrt;
+  JLabel time_com;
   JLabel noteLabel = new JLabel("NOTE: Unit of all time measurements is a CPU cycle - time taken by the CPU to finish 1 cycle of execution.");
   FrontEndPage2(ArrayList<Pr_Gant> arg,double avg_ct,double avg_tat,double avg_wt,double avg_rt) 
   {
@@ -41,6 +42,7 @@ public class FrontEndPage2
     avgtat = new JLabel("Average Turnaround Time (in cycles): "+avg_tat);
     avgwt = new JLabel("Average Waiting Time (in cycles): "+avg_wt);
     avgrt = new JLabel("Average Response Time (in cycles): "+avg_rt);
+    time_com = new JLabel("Time Complexity of SRTF is O(n^2)");
     //gant chart table creation
     String[] columnNames = { "Process_id", "Executed_Time", "From(Starting time)", "Till(End)", "Remaining_Time" };
     Object[][] data = {};
@@ -103,12 +105,14 @@ public class FrontEndPage2
     frame.add(avgwt);
     frame.add(gant_scroll);
     frame.add(avgrt);
+    frame.add(time_com);
     frame.add(noteLabel);
     title.setBounds(25,25,1150,100);
     avgct.setBounds(850,150,250,30);
     avgtat.setBounds(850,195,250,30);
     avgwt.setBounds(850,240,250,30);
     avgrt.setBounds(850,285,250,30);
+    time_com.setBounds(850,330,250,30);
     scrollPane.setBounds(25,150,800,300);
     gant_scroll.setBounds(25,475,1150,100);
     noteLabel.setBounds(25,650,700,30);

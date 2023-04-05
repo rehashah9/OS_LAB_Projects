@@ -21,7 +21,7 @@ import javax.swing.JTextField;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-class FrontEndPage1 implements ActionListener{
+class FrontEndPage1 implements ActionListener {
   private static JTable table;
   DefaultTableModel model;
   JFrame frame = new JFrame("CPU Scheduling using SRTN");
@@ -38,7 +38,8 @@ class FrontEndPage1 implements ActionListener{
   JLabel b_tLabel = new JLabel("CPU Burst Time (in cycles): ");
   JLabel id_tLabel = new JLabel("Process ID: ");
   JTextField process_nameField = new JTextField();
-  JLabel noteLabel = new JLabel("NOTE: Unit of all time measurements is a CPU cycle - time taken by the CPU to finish 1 cycle of execution.");
+  JLabel noteLabel = new JLabel(
+      "NOTE: Unit of all time measurements is a CPU cycle - time taken by the CPU to finish 1 cycle of execution.");
   JTextField a_tField = new JTextField();
   JTextField b_tField = new JTextField();
   JTextField id_tField = new JTextField();
@@ -46,32 +47,33 @@ class FrontEndPage1 implements ActionListener{
   ArrayList<Process> p_list = new ArrayList<>();
   ArrayList<Pr_Gant> gant_list = new ArrayList<>();
   Scheduling sc = new Scheduling();
-  
+
   FrontEndPage1() {
-    //loading data from database to ArrayLists
-    p_list=DBHandling.readProcess();
-    gant_list=DBHandling.readGant();
-    //start of GUI
-    frame.setSize(1200,800);
+    // loading data from database to ArrayLists
+    p_list = DBHandling.readProcess();
+    gant_list = DBHandling.readGant();
+    // start of GUI
+    frame.setSize(1200, 800);
     frame.setVisible(true);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setLayout(null);
-    frame.getContentPane().setBackground(new Color(200,255,255));
-    
+    frame.getContentPane().setBackground(new Color(200, 255, 255));
+
     // Creating the table
-    String[] columnNames = { "Process_Id","Process_Name", "Arival_Time", "CPU_burst_Time", "Completion_Time", "Turn_Around_Time","Waiting_Time", "Response_Time"};
+    String[] columnNames = { "Process_Id", "Process_Name", "Arival_Time", "CPU_burst_Time", "Completion_Time",
+        "Turn_Around_Time", "Waiting_Time", "Response_Time" };
     model = new DefaultTableModel(data, columnNames);
     table = new JTable(model);
     Process p;
     Iterator i = p_list.iterator();
-    while(i.hasNext())
-    {
-      p=(Process)i.next();
-      model.addRow(new Object[] {p.process_id, p.process_name, p.arrival_time, p.burst_time, p.completion_time, p.turnaround_time, p.waiting_time, p.response_time});
+    while (i.hasNext()) {
+      p = (Process) i.next();
+      model.addRow(new Object[] { p.process_id, p.process_name, p.arrival_time, p.burst_time, p.completion_time,
+          p.turnaround_time, p.waiting_time, p.response_time });
     }
     JScrollPane scrollPane = new JScrollPane(table);
-    //creating, setting bounds and adding all the components
-    titlepanel.setBackground(new Color(140,140,140));
+    // creating, setting bounds and adding all the components
+    titlepanel.setBackground(new Color(140, 140, 140));
     titleLabel.setFont(new Font("Serif", Font.PLAIN, 34));
     delButton.addActionListener(this);
     addButton.addActionListener(this);
@@ -95,202 +97,183 @@ class FrontEndPage1 implements ActionListener{
     frame.add(reloadButton);
     frame.add(gant_chart);
     frame.add(noteLabel);
-    titlepanel.setBounds(25,25,850,100);
-    scrollPane.setBounds(25,150,850,400);
-    gant_chart.setBounds(525,575,250,50);
-    reloadButton.setBounds(25,575,200,50);
-    addLabel.setBounds(925,25,300,50);
-    process_nameLabel.setBounds(925,90,180,30);
-    a_tLabel.setBounds(925,130,180,30);
-    b_tLabel.setBounds(925,170,180,30);
-    process_nameField.setBounds(1125,90,200,30);
-    a_tField.setBounds(1125,130,200,30);
-    b_tField.setBounds(1125,170,200,30);
-    addButton.setBounds(1125,215,75,50);
-    delLabel.setBounds(925,290,300,50);
-    id_tLabel.setBounds(925,355,100,30);
-    id_tField.setBounds(1125,355,200,30);
-    delButton.setBounds(1125,400,75,50);
-    noteLabel.setBounds(25,650,700,30);
+    titlepanel.setBounds(25, 25, 850, 100);
+    scrollPane.setBounds(25, 150, 850, 400);
+    gant_chart.setBounds(525, 575, 250, 50);
+    reloadButton.setBounds(25, 575, 200, 50);
+    addLabel.setBounds(925, 25, 300, 50);
+    process_nameLabel.setBounds(925, 90, 180, 30);
+    a_tLabel.setBounds(925, 130, 180, 30);
+    b_tLabel.setBounds(925, 170, 180, 30);
+    process_nameField.setBounds(1125, 90, 200, 30);
+    a_tField.setBounds(1125, 130, 200, 30);
+    b_tField.setBounds(1125, 170, 200, 30);
+    addButton.setBounds(1125, 215, 75, 50);
+    delLabel.setBounds(925, 290, 300, 50);
+    id_tLabel.setBounds(925, 355, 100, 30);
+    id_tField.setBounds(1125, 355, 200, 30);
+    delButton.setBounds(1125, 400, 75, 50);
+    noteLabel.setBounds(25, 650, 700, 30);
     frame.pack();
-    //inserting updated data into database before program closes - lazy shifting
-    frame.addWindowListener(new WindowAdapter(){
-      public void windowClosing(WindowEvent we)
-      {
+    // inserting updated data into database before program closes - lazy shifting
+    frame.addWindowListener(new WindowAdapter() {
+      public void windowClosing(WindowEvent we) {
         DBHandling.writeProcess(p_list);
         DBHandling.writeGant(gant_list);
       }
     });
   }
-    //REHA
-    public void actionPerformed(ActionEvent e){
-        //if delete button is pressed
-      if(e.getSource() == delButton){
-        String del_id = id_tField.getText();
-        //if no data in textfield
-        if(del_id.equals(""))
-        {
-          //TANYA
-        JFrame frame= new JFrame();
-        JLabel label = new JLabel("All fields are compulsory",JLabel.CENTER);
-        label.setBounds(80,0,150,100);
+
+  // REHA
+  public void actionPerformed(ActionEvent e) {
+    // if delete button is pressed
+    if (e.getSource() == delButton) {
+      String del_id = id_tField.getText().trim();
+      // if no data in textfield
+      if (del_id.equals("")) {
+        // TANYA
+        JFrame frame = new JFrame();
+        JLabel label = new JLabel("All fields are compulsory", JLabel.CENTER);
+        label.setBounds(80, 0, 150, 100);
         frame.add(label);
         frame.setTitle("Invalid");
-        frame.setSize(320,180);
+        frame.setSize(320, 180);
         frame.setLayout(null);
         frame.setVisible(true);
 
-        }
-        else
-        {
-            //actual functionality
-          try
-            {
-              int id = Integer.parseInt(del_id),flag=0;
-              Process p;
-              Iterator i = p_list.iterator();
-              //deleting process with given process id
-              while(i.hasNext())
-                {
-                  p = (Process)i.next();
-                  if(p.process_id==id)
-                  {
-                    p_list.remove(p);
-                    flag=1;
-                    break;
-                  }
-                }
-              //if given process id actually existed
-              if(flag==1)
-              {
-                gant_list=sc.schedule(p_list);
-                model.setRowCount(0);
-                i = p_list.iterator();
-                while(i.hasNext())
-                  {
-                    p=(Process)i.next();
-                    model.addRow(new Object[] {p.process_id, p.process_name, p.arrival_time, p.burst_time, p.completion_time, p.turnaround_time, p.waiting_time, p.response_time});
-                  }
-              }
-              //if given process id didn't exist as is
-              else
-              {
-                  //TANYA
-              JFrame frame= new JFrame();
-        JLabel label = new JLabel("Process id doesn't exist",JLabel.CENTER);
-       label.setBounds(60,0,180,100);
-        frame.add(label);
-        frame.setTitle("Invalid");
-        frame.setSize(320,180);
-        frame.setLayout(null);
-        frame.setVisible(true);
-              }
-              id_tField.setText("");
+      } else {
+        // actual functionality
+        try {
+          int id = Integer.parseInt(del_id), flag = 0;
+          Process p;
+          Iterator i = p_list.iterator();
+          // deleting process with given process id
+          while (i.hasNext()) {
+            p = (Process) i.next();
+            if (p.process_id == id) {
+              p_list.remove(p);
+              flag = 1;
+              break;
             }
-          //if data in text field is not int
-          catch(Exception ex)
-            {
-              //TANYA
-              JFrame frame= new JFrame();
-        JLabel label = new JLabel("Process id should be integer",JLabel.CENTER);
-       label.setBounds(60,0,180,100);
-        frame.add(label);
-        frame.setTitle("Invalid");
-        frame.setSize(320,180);
-        frame.setLayout(null);
-        frame.setVisible(true);
-
-                
-            }
-        }
-      }
-      //if add button clicked
-      else if(e.getSource() == addButton){
-        String pn = process_nameField.getText();
-        String at = a_tField.getText();
-        String bt = b_tField.getText();
-        //if data not given in any field
-        if((pn.equals(""))||(at.equals(""))||(bt.equals("")))
-        {
-          //TANYA
-          JFrame frame= new JFrame();
-        JLabel label = new JLabel("All fields are compulsory",JLabel.CENTER);
-        label.setBounds(80,0,150,100);
-        frame.add(label);
-        frame.setTitle("Invalid");
-        frame.setSize(320,180);
-        frame.setLayout(null);
-        frame.setVisible(true);
-          
-                       
-        }
-        else
-        {
-            //actual functionality
-          try
-            {
-              int ar=Integer.parseInt(at);
-              int bu=Integer.parseInt(bt); 
-              Process p = new Process(pn,ar,bu);
-              p_list.add(p);
-              gant_list=sc.schedule(p_list);
-              model.setRowCount(0);
-              Iterator i = p_list.iterator();
-              while(i.hasNext())
-                {
-                  p=(Process)i.next();
-                  model.addRow(new Object[] {p.process_id, p.process_name, p.arrival_time, p.burst_time, p.completion_time, p.turnaround_time, p.waiting_time, p.response_time});
-                }
-              a_tField.setText("");
-              b_tField.setText("");
-              process_nameField.setText("");
-            }
-          //if given arrival or burst time is not integer
-          catch(Exception ex)
-            {
-              //TANYA
-                JFrame frame= new JFrame();
-        JLabel label = new JLabel("Arrival and Burst time should be integer",JLabel.CENTER);
-         label.setBounds(40,0,240,100);
-        frame.add(label);
-        frame.setTitle("Invalid");
-        frame.setSize(320,180);
-        frame.setLayout(null);
-        frame.setVisible(true);
-
-              
-            }
-        }
-      }
-      //button to show gant chart and average values
-      else if(e.getSource() == gant_chart){
-        double avgCT=0,avgTAT=0,avgWT=0,avgRT=0;
-        Iterator i = p_list.iterator();
-        Process temp;
-        //calculating averages
-        while(i.hasNext())
-          {
-            temp=(Process)i.next();
-            avgCT+=temp.completion_time;
-            avgTAT+=temp.turnaround_time;
-            avgWT+=temp.waiting_time;
-            avgRT+=temp.response_time;
           }
-        avgCT/=(double)p_list.size();
-        avgTAT/=(double)p_list.size();
-        avgWT/=(double)p_list.size();
-        avgRT/=(double)p_list.size();
-        //gant chart page
-        FrontEndPage2 gant_page = new FrontEndPage2(gant_list,avgCT,avgTAT,avgWT,avgRT);
-      }
-      //button to reset all the data
-      else if(e.getSource()==reloadButton)
-      {
-        //clearing the table and both the lists
-        model.setRowCount(0);
-        p_list.clear();
-        gant_list.clear();
+          // if given process id actually existed
+          if (flag == 1) {
+            gant_list = sc.schedule(p_list);
+            model.setRowCount(0);
+            i = p_list.iterator();
+            while (i.hasNext()) {
+              p = (Process) i.next();
+              model.addRow(new Object[] { p.process_id, p.process_name, p.arrival_time, p.burst_time, p.completion_time,
+                  p.turnaround_time, p.waiting_time, p.response_time });
+            }
+          }
+          // if given process id didn't exist as is
+          else {
+            // TANYA
+            JFrame frame = new JFrame();
+            JLabel label = new JLabel("Process id doesn't exist", JLabel.CENTER);
+            label.setBounds(60, 0, 180, 100);
+            frame.add(label);
+            frame.setTitle("Invalid");
+            frame.setSize(320, 180);
+            frame.setLayout(null);
+            frame.setVisible(true);
+          }
+          id_tField.setText("");
+        }
+        // if data in text field is not int
+        catch (Exception ex) {
+          // TANYA
+          JFrame frame = new JFrame();
+          JLabel label = new JLabel("Process id should be integer", JLabel.CENTER);
+          label.setBounds(60, 0, 180, 100);
+          frame.add(label);
+          frame.setTitle("Invalid");
+          frame.setSize(320, 180);
+          frame.setLayout(null);
+          frame.setVisible(true);
+
+        }
       }
     }
-    
+    // if add button clicked
+    else if (e.getSource() == addButton) {
+      String pn = process_nameField.getText().trim();
+      String at = a_tField.getText().trim();
+      String bt = b_tField.getText().trim();
+      // if data not given in any field
+      if ((pn.equals("")) || (at.equals("")) || (bt.equals(""))) {
+        // TANYA
+        JFrame frame = new JFrame();
+        JLabel label = new JLabel("All fields are compulsory", JLabel.CENTER);
+        label.setBounds(80, 0, 150, 100);
+        frame.add(label);
+        frame.setTitle("Invalid");
+        frame.setSize(320, 180);
+        frame.setLayout(null);
+        frame.setVisible(true);
+
+      } else {
+        // actual functionality
+        try {
+          int ar = Integer.parseInt(at);
+          int bu = Integer.parseInt(bt);
+          Process p = new Process(pn, ar, bu);
+          p_list.add(p);
+          gant_list = sc.schedule(p_list);
+          model.setRowCount(0);
+          Iterator i = p_list.iterator();
+          while (i.hasNext()) {
+            p = (Process) i.next();
+            model.addRow(new Object[] { p.process_id, p.process_name, p.arrival_time, p.burst_time, p.completion_time,
+                p.turnaround_time, p.waiting_time, p.response_time });
+          }
+          a_tField.setText("");
+          b_tField.setText("");
+          process_nameField.setText("");
+        }
+        // if given arrival or burst time is not integer
+        catch (Exception ex) {
+          // TANYA
+          JFrame frame = new JFrame();
+          JLabel label = new JLabel("Arrival and Burst time should be integer", JLabel.CENTER);
+          label.setBounds(40, 0, 240, 100);
+          frame.add(label);
+          frame.setTitle("Invalid");
+          frame.setSize(320, 180);
+          frame.setLayout(null);
+          frame.setVisible(true);
+
+        }
+      }
+    }
+    // button to show gant chart and average values
+    else if (e.getSource() == gant_chart) {
+      double avgCT = 0, avgTAT = 0, avgWT = 0, avgRT = 0;
+      Iterator i = p_list.iterator();
+      Process temp;
+      // calculating averages
+      while (i.hasNext()) {
+        temp = (Process) i.next();
+        avgCT += temp.completion_time;
+        avgTAT += temp.turnaround_time;
+        avgWT += temp.waiting_time;
+        avgRT += temp.response_time;
+      }
+      avgCT /= (double) p_list.size();
+      avgTAT /= (double) p_list.size();
+      avgWT /= (double) p_list.size();
+      avgRT /= (double) p_list.size();
+      // gant chart page
+      FrontEndPage2 gant_page = new FrontEndPage2(gant_list, avgCT, avgTAT, avgWT, avgRT);
+    }
+    // button to reset all the data
+    else if (e.getSource() == reloadButton) {
+      // clearing the table and both the lists
+      model.setRowCount(0);
+      p_list.clear();
+      gant_list.clear();
+    }
+  }
+
 }

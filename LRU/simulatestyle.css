@@ -1,6 +1,6 @@
 /* CSS to the simulator page */
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,500;1,400&display=swap'); 
-header {
+body {
   background-image:url("lru1.jpg");
 
 }
@@ -16,7 +16,7 @@ h1{
 .form{
   width: 900px;
   margin: auto;
-  height: 1000px
+  padding-bottom: 200px;
 }
 .form-input{
   width: 100%;

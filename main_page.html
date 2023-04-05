@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body {
+			margin: 0;
+			padding: 0;
+		}
+		#video-background {
+			position: fixed;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			overflow: hidden;
+			z-index: -100;
+		}
+		#video-background video {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			min-width: 100%;
+			min-height: 100%;
+			width: auto;
+			height: auto;
+			transform: translateX(-50%) translateY(-50%);
+		}
+            h1{
+                font-family: 'Ubuntu', sans-serif;
+                font-size: 80px;
+                text-align: center;
+                margin: 250px 0 50px 0;
+                color: rgb(255, 255, 255);
+            }
+            .btn-1{
+                font-family: 'Ubuntu', sans-serif;
+                font-size: 45px;
+                text-align: center;
+                margin-left: 370px;
+                color: rgb(255, 255, 255);
+            }
+            .btn-2{
+                font-family: 'Ubuntu', sans-serif;
+                font-size: 45px;
+                text-align: center;
+                margin-left: 430px;
+                margin-bottom: -150px;
+                color: rgb(255, 255, 255);
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div id="video-background">
+                <video autoplay loop muted>
+                    <source src="os-1.mp4" type="video/mp4">
+                </video>
+            </div>
+            <main>
+                <h1>Operating System</h1>
+                <a href="SSTF/index.html" class="btn-1">SSTF</a>
+	        <a href="LRU/index.html" class="btn-2">LRU</a>
+            </main>
+        </header>
+    </body>
+</html>

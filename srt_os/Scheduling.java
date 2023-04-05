@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 class Scheduling {
-  //function used to schedule the processes using SRT
+  //function used to schedule the processes using SRT - time complexity: O(n^2)
   ArrayList<Pr_Gant> schedule(ArrayList<Process> ap) {
     // declaring variables
     ArrayList<Process> p_list = new ArrayList<>();

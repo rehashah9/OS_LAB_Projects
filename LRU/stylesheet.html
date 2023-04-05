@@ -9,17 +9,17 @@
     <h1 class="text-center">Simulator</h1>
     <div class="form">
 <!-- Creating labels and input feilds -->
-      <Label class="label-input">Input fields</Label>
+<Label class="label-input"><h2>Input fields</h2></Label>
       <Label class="label-input">Refrence String: </Label>
       <input class="form-input" type="text" name="rs" id="rs" placeholder="Enter Refrence String"></br>
       <Label class="label-input">Total slots in memory: </Label>
       <input class="form-input" type="text" name="tsim" id="tsim" placeholder="Enter slots in memory"></br>
 <!-- On click event to the button -->
-	  <button class="btn btn-dark" id="sim" onclick="simulate()">Simulate</button>
+	  <button class="btn btn-dark" id="sim" onclick="simulate()">Simulate</button><br><br>
 
       <Label class="label-input"><h2>Result</h2> </Label>
 <!-- Creating table -->
-      <table id="table_mem" border="2">
+      <table id="table_mem" border="2" style="border-collapse: collapse; width: 100%;font-size: 15px;font-family: 'Ubuntu', sans-serif">
 		<thead></thead>
 		<tbody>
 <!-- Table row -->
@@ -36,7 +36,8 @@
       <label style="font-size: 18px;font-family: 'Ubuntu', sans-serif">Hit Rate: </label>
       <input style="font-size: 17px; border:2px solid gray; border-radius: 6px; font-family: 'Ubuntu', sans-serif;" type="text" readonly="readonly" name="hr" id="hr" placeholder="Hit Rate">
       <label style="font-size: 18px;font-family: 'Ubuntu', sans-serif">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Miss Rate: </label>
-      <input style="font-size: 17px; border:2px solid gray; border-radius: 6px; font-family: 'Ubuntu', sans-serif;" type="text" readonly="readonly" name="mr" id="mr" placeholder="Miss rate"></br>
+      <input style="font-size: 17px; border:2px solid gray; border-radius: 6px; font-family: 'Ubuntu', sans-serif;" type="text" readonly="readonly" name="mr" id="mr" placeholder="Miss rate"></br><br><br>
+      <label style="font-size: 18px;font-family: 'Ubuntu', sans-serif">The Time Complexity of this algorithm is: O(n^2)</label>
     </form>
 <!-- Connecting java script code to the html -->
 	<script src="js_backend.js"> </script>	

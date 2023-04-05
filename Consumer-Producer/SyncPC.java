@@ -17,11 +17,11 @@ public class SyncPC {
   public int i = 0;
   public String[] stack;
   public int z = 0;
-
-  // Producer code
+  //time complexity: O(n) where n is the number of transactions
   void simulate(int n, String[] stack1, TableLayout tb, Solution m) throws Exception {
     this.stack = stack1;
     s = -1;
+    // Producer code
     Runnable r1 = new Runnable() {
       public void run() {
         while (z == 1) {
@@ -34,9 +34,8 @@ public class SyncPC {
                   Toast.makeText(m, "Producer is waiting", Toast.LENGTH_SHORT).show();
                 }
               });
-            } catch (Exception r) {
-            }
-            not_full.await();
+              not_full.await();
+            } catch (Exception r) {}
           }
           lock.lock();
           // Critical Section
@@ -100,9 +99,9 @@ public class SyncPC {
                   Toast.makeText(m, "Consumer is waiting", Toast.LENGTH_SHORT).show();
                 }
               });
+              not_empty.await();
             } catch (Exception r) {
             }
-            not_empty.await();
           }
           lock.lock();
           // Critical Section
