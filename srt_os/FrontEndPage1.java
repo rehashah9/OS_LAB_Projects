@@ -218,19 +218,35 @@ class FrontEndPage1 implements ActionListener {
         try {
           int ar = Integer.parseInt(at);
           int bu = Integer.parseInt(bt);
-          Process p = new Process(pn, ar, bu);
-          p_list.add(p);
-          gant_list = sc.schedule(p_list);
-          model.setRowCount(0);
-          Iterator i = p_list.iterator();
-          while (i.hasNext()) {
-            p = (Process) i.next();
-            model.addRow(new Object[] { p.process_id, p.process_name, p.arrival_time, p.burst_time, p.completion_time,
-                p.turnaround_time, p.waiting_time, p.response_time });
+          //if arrival and burst time are positive
+          if((ar>0)&&(bu>0))
+          {
+            Process p = new Process(pn, ar, bu);
+            p_list.add(p);
+            gant_list = sc.schedule(p_list);
+            model.setRowCount(0);
+            Iterator i = p_list.iterator();
+            while (i.hasNext()) {
+              p = (Process) i.next();
+              model.addRow(new Object[] { p.process_id, p.process_name, p.arrival_time, p.burst_time, p.completion_time,
+                  p.turnaround_time, p.waiting_time, p.response_time });
+            }
+            a_tField.setText("");
+            b_tField.setText("");
+            process_nameField.setText("");
           }
-          a_tField.setText("");
-          b_tField.setText("");
-          process_nameField.setText("");
+          else
+          {
+            // TANYA
+            JFrame frame = new JFrame();
+            JLabel label = new JLabel("Arrival and Burst time should be positive", JLabel.CENTER);
+            label.setBounds(40, 0, 240, 100);
+            frame.add(label);
+            frame.setTitle("Invalid");
+            frame.setSize(320, 180);
+            frame.setLayout(null);
+            frame.setVisible(true);
+          }
         }
         // if given arrival or burst time is not integer
         catch (Exception ex) {
