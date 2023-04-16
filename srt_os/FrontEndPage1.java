@@ -219,7 +219,7 @@ class FrontEndPage1 implements ActionListener {
           int ar = Integer.parseInt(at);
           int bu = Integer.parseInt(bt);
           //if arrival and burst time are positive
-          if((ar>0)&&(bu>0))
+          if((ar>=0)&&(bu>0))
           {
             Process p = new Process(pn, ar, bu);
             p_list.add(p);
@@ -239,7 +239,7 @@ class FrontEndPage1 implements ActionListener {
           {
             // TANYA
             JFrame frame = new JFrame();
-            JLabel label = new JLabel("Arrival and Burst time should be positive", JLabel.CENTER);
+            JLabel label = new JLabel("Arrival time should be non-negative and Burst time should be positive", JLabel.CENTER);
             label.setBounds(40, 0, 240, 100);
             frame.add(label);
             frame.setTitle("Invalid");
