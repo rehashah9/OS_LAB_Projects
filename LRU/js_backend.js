@@ -120,7 +120,7 @@ function simulate()
   var ref_st = (document.getElementById('rs').value).trim();
   size_str = (document.getElementById('tsim').value).trim();
   //checking if size input is not int
-  if(isNaN(size_str)==true)
+  if((isNaN(size_str)==true)||(size_str==""))
   {
     document.getElementById('tsim').placeholder="value has to be integer!";
     document.getElementById('tsim').value="";

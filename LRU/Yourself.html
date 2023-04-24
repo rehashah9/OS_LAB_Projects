@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* CSS to the simulator page */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,500;1,400&display=swap'); 
+body {
+  background-image:url("lru1.jpg");
+
+}
+/* Font size,font color and font style to the heading */
+h1{
+  
+  font-size: 40px;
+  text-align: left;
+  font-family: 'Ubuntu', sans-serif;
+}
+/* CSS to the form */
+.form{
+  width: 900px;
+  margin: auto;
+  padding-bottom: 200px;
+}
+.form-input{
+  width: 100%;
+  margin: 10px 0;
+  padding: auto;
+  font-size: 17px;
+  border:2px solid gray;
+  border-radius: 6px;
+  font-family: 'Ubuntu', sans-serif;
+}
+.label-input
+{
+    width: 100%;
+    margin: 10px 0;
+    padding: auto;
+    font-size: 18px;
+    font-family: 'Ubuntu', sans-serif;
+}
+/* CSS to button */
+.btn{
+  padding: 8px 20px;
+  margin: 7px 3px;
+  border: 2px solid black;
+  border-radius: 8px;
+  background: none;
+  color:black;
+  cursor: pointer;
+  font-family: 'Ubuntu', sans-serif;
+}
+.btn-dark{
+  color: black;
+  border: 2px solid black;
+  
+}
+
+.Simulator{
+ background-color: gray;
+  height: 480px;
+  padding-top: 40px;
+}
+#noh {
+    width: 100px; 
+    height: 30px; 
+  }
+    </style>
+</head>
+<body>
+   
+    <div class="form">
+<!-- Creating labels and input feilds -->
+<Label class="label-input"><h2>Enter the question: </h2></Label>
+      <Label class="label-input">Refrence String (use space as seperator): </Label>
+      <input class="form-input" type="text" name="rs" id="rs" placeholder="Enter Refrence String"></br>
+      <Label class="label-input">Total slots in memory: </Label>
+      <input class="form-input" type="text" name="tsim" id="tsim" placeholder="Enter slots in memory"></br>
+<!-- On click event to the button -->
+	  <button class="btn btn-dark" id="try" onclick="try_answer()">Generate table</button><br><br>
+<!-- Creating table -->
+    <Label class="label-input">Table (use '-' to show empty slot and start filling from slot 0): </Label><br>
+    <table id="table_mem" border="2" style="border-collapse: collapse; width: 100%;font-size: 15px;font-family: 'Ubuntu', sans-serif"><thead></thead><tbody><tr><td></td></tr></tbody></table><br><br>
+    <label style="font-size: 18px;font-family: 'Ubuntu', sans-serif">No of Hits: </label>
+ 
+    <input style="font-size: 17px; border:2px solid gray; border-radius: 6px; font-family: 'Ubuntu', sans-serif;" type="text" name="nhit" id="nhit" placeholder="No of hits">
+    <label style="font-size: 18px;font-family: 'Ubuntu', sans-serif">&emsp;&emsp;&emsp;&emsp; No of Page faults: </label>
+    <input style="font-size: 17px; border:2px solid gray; border-radius: 6px; font-family: 'Ubuntu', sans-serif;" type="text" name="nmiss" id="nmiss" placeholder="No of page fault"></br><br>
+    <label style="font-size: 18px;font-family: 'Ubuntu', sans-serif">Hit Rate (upto 2 decimals): </label>
+    <input style="font-size: 17px; border:2px solid gray; border-radius: 6px; font-family: 'Ubuntu', sans-serif; width: 160px" type="text" name="hitr" id="hitr" placeholder="Hit Rate">
+    <label style="font-size: 18px;font-family: 'Ubuntu', sans-serif">&emsp;&emsp; Miss Rate (upto 2 decimals): </label>
+    <input style="font-size: 17px; border:2px solid gray; border-radius: 6px; font-family: 'Ubuntu', sans-serif; width: 160px" type="text" name="missr" id="missr" placeholder="Miss rate"></br><br><br>
+    <form action="Yourself.php" method="POST">
+    <button class="btn btn-dark" id="try" onclick="check_user()">Check your answers</button>
+    <label>&emsp;&emsp;&emsp;&emsp;</label>
+    <input style="font-size: 17px; border:2px solid gray; border-radius: 6px; font-family: 'Ubuntu', sans-serif;" type="text" readonly="readonly" name="correct" id="correct" placeholder="No of correct answers">
+    <label>&emsp;&emsp;&emsp;&emsp;</label>
+    <input style="font-size: 17px; border:2px solid gray; border-radius: 6px; font-family: 'Ubuntu', sans-serif;" type="text" readonly="readonly" name="incorrect" id="incorrect" placeholder="No of incorrect answers"><br>
+    </form>
+    <button class="btn btn-dark" id="cls" onclick="clear_page()">Clear page</button>
+    </div>
+ 
+<!-- Connecting java script code to the html -->
+
+	<script src="js_backend_x.js"> </script>	
+
+</body>
+</html>

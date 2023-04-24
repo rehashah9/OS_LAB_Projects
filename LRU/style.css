@@ -74,10 +74,50 @@
    background: #fff;
     color: #000000;
   }
-  
   .btntwo:hover {
     background: rgb(9, 87, 9);
     color: #ffffff;
   }
+  section .btnthree {
+    background: #fff;
+     color: #000000;
+   }
+   .btnthree:hover {
+    background: rgb(9, 87, 9);
+    color: #ffffff;
+  }
+  section .btnfour {
+    background: #fff;
+     color: #000000;
+   }
+   .btnfour:hover {
+    background: rgb(9, 87, 9);
+    color: #ffffff;
+  }
+  section .btnfive {
+    background: #fff;
+     color: #000000;
+   }
+   .btnfive:hover {
+    background: rgb(9, 87, 9);
+    color: #ffffff;
+  }
+  section .btnsix {
+    background: #fff;
+     color: #000000;
+   }
+   .btnsix:hover {
+    background: rgb(9, 87, 9);
+    color: #ffffff;
+  }
+  section .btnseven {
+    background: #fff;
+     color: #000000;
+   }
+   .btnseven:hover {
+    background: rgb(9, 87, 9);
+    color: #ffffff;
+  }
+  
 
   
